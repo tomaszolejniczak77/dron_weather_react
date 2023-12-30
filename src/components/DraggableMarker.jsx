@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useMemo, useCallback, useRef } from "react";
 import { Marker, Popup } from "react-leaflet";
-// import "leaflet/dist/leaflet.css";
 
 const DraggableMarker = ({ coords }) => {
   const { latitude, longitude } = coords;
@@ -29,7 +28,6 @@ const DraggableMarker = ({ coords }) => {
     setDraggable((d) => !d);
   }, []);
 
-  console.log(position);
   return (
     <>
       <Marker

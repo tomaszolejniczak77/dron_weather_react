@@ -28,8 +28,8 @@ export const Map = ({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* <Marker position={[coords.latitude, coords.longitude]}></Marker> */}
-      <DraggableMarker coords={coords} />
+      <Marker position={[coords.latitude, coords.longitude]}></Marker>
+      {/* <DraggableMarker coords={coords} /> */}
     </MapContainer>
   ) : (
     <div className="info">Pobieranie danych o lokalizacji</div>
