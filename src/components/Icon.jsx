@@ -12,7 +12,7 @@ const Icon = ({ iconInfo, current }) => {
     <>
       <div>
         <img
-          src={`src/image/weather/${
+          src={`/src/image/weather/${
             current.is_day === 1 ? "day" : "night"
           }/${iconNumber}.png`}
           alt="weather icon"
