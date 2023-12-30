@@ -1,0 +1,9 @@
+.nav {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: goldenrod;
+  font-size: 32px;
+  font-weight: bold;
+}

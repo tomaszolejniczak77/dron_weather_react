@@ -1,0 +1,39 @@
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  background: #004425;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.tile.withClick {
+  cursor: pointer;
+}
+
+.tile p {
+  margin: 3px;
+}
+
+.value {
+  font-size: 18px;
+}
+
+.extraTile {
+  font-size: 10px;
+}
+
+.tile.withClick.badCondition {
+  cursor: pointer;
+  background: rgb(141, 6, 6);
+}

@@ -1,0 +1,37 @@
+.chartWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.chart {
+  margin-top: 1rem;
+  background-color: #d8c3a5;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 10px;
+}
+
+.btn {
+  background-color: goldenrod;
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn.active {
+  background-color: rgb(186, 93, 12);
+}
+
+@media (min-width: 480px) {
+  .chart {
+    height: 200px;
+    width: 400px;
+  }
+}
