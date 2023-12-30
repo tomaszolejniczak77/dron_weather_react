@@ -2,6 +2,8 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import DraggableMarker from "./DraggableMarker";
 import "./Map.css";
 
@@ -10,6 +12,13 @@ export const Map = ({
   isGeolocationAvailable,
   isGeolocationEnabled,
 }) => {
+  let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+  });
+
+  L.Marker.prototype.options.icon = DefaultIcon;
+
   return !isGeolocationAvailable ? (
     <div className="info" style={{ color: "red" }}>
       Twoja przeglądarka nie wspiera geolokalizacji
