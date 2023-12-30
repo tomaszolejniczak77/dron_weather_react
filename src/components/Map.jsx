@@ -3,6 +3,7 @@ import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import DraggableMarker from "./DraggableMarker";
+import "./Map.css";
 
 export const Map = ({
   coords,
