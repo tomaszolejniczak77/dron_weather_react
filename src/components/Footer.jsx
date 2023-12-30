@@ -8,14 +8,16 @@ const Footer = () => {
     <>
       <div className="footer">
         <div className="image">
-          <p>Powered by</p>
-          <a href="https://www.weatherapi.com/">
-            <img
-              src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png"
-              alt="Weather data by WeatherAPI.com"
-            />
+          <span>Powered by </span>
+          <a
+            className="link"
+            href="https://www.weatherapi.com/"
+            title="Free Weather API"
+          >
+            WeatherAPI.com
           </a>
         </div>
+
         <p>Tomasz Olejniczak® {date.getFullYear()}</p>
       </div>
     </>

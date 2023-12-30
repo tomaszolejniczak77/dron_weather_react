@@ -70,7 +70,9 @@ const LineChart = ({ forecastday, searchData, label }) => {
                   label: msBtnToogle ? extraLabel : label,
                   data: data,
                   backgroundColor: "blue",
-                  borderColor: "blue",
+                  borderColor: data.map((v) =>
+                    v > 8.3 && msBtnToogle ? "red" : "blue"
+                  ),
                 },
               ],
             }}
@@ -96,7 +98,7 @@ const LineChart = ({ forecastday, searchData, label }) => {
                   ticks: {
                     color: "black",
                     autoSkip: false,
-                    font: { size: "9" },
+                    font: { size: "12" },
                   },
                   grid: {},
                 },

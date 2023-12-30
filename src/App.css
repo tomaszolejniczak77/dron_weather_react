@@ -12,7 +12,7 @@ body {
   height: 150px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .App {
     display: flex;
     flex-direction: column;
