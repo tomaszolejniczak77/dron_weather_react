@@ -17,8 +17,8 @@ const WeatherInfo = ({ weatherData }) => {
 
   const { kp } = Kp();
 
-  const [searchData, setSearchData] = useState("gust_kph");
-  const [label, setLabel] = useState("Porywy wiatru - km/h");
+  const [searchData, setSearchData] = useState("temp_c");
+  const [label, setLabel] = useState("Temperatura - °C");
 
   const convertTime = (timeStr) => {
     const [time, modifier] = timeStr.split(" ");
@@ -47,7 +47,7 @@ const WeatherInfo = ({ weatherData }) => {
       withClick: true,
       dataName: "temp_c",
       label: "Temperatura - °C",
-      isActive: false,
+      isActive: true,
     },
     {
       tile: "Zachmurzenie",
@@ -84,7 +84,7 @@ const WeatherInfo = ({ weatherData }) => {
       withClick: true,
       dataName: "gust_kph",
       label: "Porywy wiatru - km/h",
-      isActive: true,
+      isActive: false,
     },
     {
       tile: "Kierunek wiatru",
@@ -136,8 +136,10 @@ const WeatherInfo = ({ weatherData }) => {
           <div
             onClick={() => handleDataForChart(i)}
             className={
-              el.badCondition && el.withClick && el.isActive
+              el.badCondition && el.isActive && el.withClick
                 ? "tile withClick active badCondition"
+                : el.badCondition && el.withClick
+                ? "tile withClick badCondition"
                 : el.withClick && el.isActive
                 ? "tile withClick active"
                 : el.withClick
@@ -152,7 +154,7 @@ const WeatherInfo = ({ weatherData }) => {
             <p className="extraTile">{el.extraValue}</p>
           </div>
         ))}
-        <div className="tile">
+        <div className={kp > 4 ? "tile badCondition" : "tile"}>
           <p>KP</p>
           {!kp ? "Czekaj" : <p>{kp}</p>}
         </div>

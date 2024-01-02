@@ -27,6 +27,11 @@ section {
   background: rgb(0, 68, 37, 1);
 }
 
+.tile.withClick.badCondition {
+  cursor: pointer;
+  background: rgb(141, 6, 6, 0.6);
+}
+
 .tile p {
   margin: 3px;
 }
@@ -41,5 +46,5 @@ section {
 
 .tile.withClick.active.badCondition {
   cursor: pointer;
-  background: rgb(141, 6, 6);
+  background: rgb(141, 6, 6, 1);
 }
