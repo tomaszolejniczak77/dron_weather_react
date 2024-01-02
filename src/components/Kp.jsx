@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const Kp = () => {
-  const [kp, setKp] = useState(null);
+  const [kp, setKp] = useState();
 
   const baseURL =
     "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json";
@@ -16,7 +16,7 @@ const Kp = () => {
     });
   }, []);
 
-  return [kp];
+  return { kp };
 };
 
 export default Kp;

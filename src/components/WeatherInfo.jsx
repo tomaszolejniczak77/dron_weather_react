@@ -15,10 +15,10 @@ const WeatherInfo = ({ weatherData }) => {
     forecast: { forecastday },
   } = weatherData;
 
+  const { kp } = Kp();
+
   const [searchData, setSearchData] = useState("gust_kph");
   const [label, setLabel] = useState("Porywy wiatru - km/h");
-
-  // console.log(current);
 
   const convertTime = (timeStr) => {
     const [time, modifier] = timeStr.split(" ");
@@ -37,15 +37,6 @@ const WeatherInfo = ({ weatherData }) => {
 
   const { isLoading, iconInfo } = GetIcon();
 
-  function handleDataForChart(i) {
-    if (i <= 4) {
-      setSearchData(tiles[i].dataName);
-      setLabel(tiles[i].label);
-    }
-  }
-
-  const [kp] = Kp();
-
   const tiles = [
     {
       tile: "Temperatura",
@@ -56,6 +47,7 @@ const WeatherInfo = ({ weatherData }) => {
       withClick: true,
       dataName: "temp_c",
       label: "Temperatura - °C",
+      isActive: false,
     },
     {
       tile: "Zachmurzenie",
@@ -66,6 +58,7 @@ const WeatherInfo = ({ weatherData }) => {
       withClick: true,
       dataName: "cloud",
       label: "Zachmurzenie - %",
+      isActive: false,
     },
     {
       tile: "Wiatr",
@@ -74,6 +67,7 @@ const WeatherInfo = ({ weatherData }) => {
       withClick: true,
       dataName: "wind_kph",
       label: "Wiatr - km/h",
+      isActive: false,
     },
     {
       tile: "Ciśnienie",
@@ -81,6 +75,7 @@ const WeatherInfo = ({ weatherData }) => {
       dataName: "pressure_mb",
       label: "Ciśnienie - hPa",
       withClick: true,
+      isActive: false,
     },
     {
       tile: "Porywy wiatru",
@@ -89,6 +84,13 @@ const WeatherInfo = ({ weatherData }) => {
       withClick: true,
       dataName: "gust_kph",
       label: "Porywy wiatru - km/h",
+      isActive: true,
+    },
+    {
+      tile: "Kierunek wiatru",
+      value: current.wind_dir,
+      withClick: false,
+      isActive: false,
     },
     {
       tile: "Wschód słońca",
@@ -96,15 +98,27 @@ const WeatherInfo = ({ weatherData }) => {
       value: `${sunRise}`,
       extraValue: `${sunSet}`,
       withClick: false,
+      isActive: false,
     },
-    {
-      tile: "KP ",
-      value: `${kp}`,
-      badCondition: kp >= 5 ? true : false,
-      withClick: false,
-    },
-    { tile: "Kierunek wiatru", value: current.wind_dir, withClick: false },
   ];
+
+  const [currentTiles, setCurrentTiles] = useState(tiles);
+
+  function changeActiveTile(i) {
+    const newTiles = currentTiles.map((key, indx) =>
+      indx === i ? { ...key, isActive: true } : { ...key, isActive: false }
+    );
+
+    setCurrentTiles(newTiles);
+  }
+
+  function handleDataForChart(i) {
+    if (i <= 4) {
+      setSearchData(tiles[i].dataName);
+      setLabel(tiles[i].label);
+      changeActiveTile(i);
+    }
+  }
 
   return (
     <>
@@ -118,12 +132,14 @@ const WeatherInfo = ({ weatherData }) => {
               : iconInfo && <Icon iconInfo={iconInfo} current={current} />}
           </div>
         </>
-        {tiles.map((el, i) => (
+        {currentTiles.map((el, i) => (
           <div
             onClick={() => handleDataForChart(i)}
             className={
-              el.badCondition && el.withClick
-                ? "tile withClick badCondition"
+              el.badCondition && el.withClick && el.isActive
+                ? "tile withClick active badCondition"
+                : el.withClick && el.isActive
+                ? "tile withClick active"
                 : el.withClick
                 ? "tile withClick"
                 : "tile"
@@ -136,6 +152,10 @@ const WeatherInfo = ({ weatherData }) => {
             <p className="extraTile">{el.extraValue}</p>
           </div>
         ))}
+        <div className="tile">
+          <p>KP</p>
+          {!kp ? "Czekaj" : <p>{kp}</p>}
+        </div>
       </section>
       <LineChart
         forecastday={forecastday}

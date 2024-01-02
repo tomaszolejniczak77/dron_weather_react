@@ -24,9 +24,7 @@ const Icon = ({ iconInfo, current }) => {
 
   return (
     <>
-      <div>
-        <img src={icon} alt="Weather icon" />
-      </div>
+      <div>{!icon ? "Chwila!" : <img src={icon} alt="Weather icon" />}</div>
     </>
   );
 };
