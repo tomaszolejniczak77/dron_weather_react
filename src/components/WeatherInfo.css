@@ -48,3 +48,15 @@ section {
   cursor: pointer;
   background: rgb(141, 6, 6, 1);
 }
+
+@media (max-width: 380px) {
+  .tile {
+    width: 110px;
+    height: 110px;
+  }
+
+  .tile p {
+    margin: 3px;
+    text-align: center;
+  }
+}
