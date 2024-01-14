@@ -18,10 +18,25 @@ const LineChart = ({ forecastday, searchData, label }) => {
   const [data, setData] = useState([]);
   const [extraLabel, setExtraLabel] = useState();
 
+  console.log(windDataMs, msBtnToogle, searchData);
+
   useEffect(() => {
     if (!msBtnToogle) {
       setData(day.map((key) => key[searchData]));
-    } else {
+    } else if (
+      msBtnToogle &&
+      (searchData === "temp_c" ||
+        searchData === "cloud" ||
+        searchData === "pressure_mb")
+    ) {
+      setData(day.map((key) => key[searchData]));
+      setMsBtnToogle(false);
+    } else if (
+      msBtnToogle &&
+      (searchData === "gust_kph" || searchData === "wind_kph")
+    ) {
+      transformKmhToMs(day, searchData);
+      setExtraLabel("Porywy wiatru - m/s");
       setData(windDataMs.map((v) => v));
     }
   }, [day, searchData, msBtnToogle]);
