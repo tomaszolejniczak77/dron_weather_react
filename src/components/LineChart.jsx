@@ -25,6 +25,9 @@ const LineChart = ({ forecastday, searchData, label }) => {
   useEffect(() => {
     if (!msBtnToogle) {
       setData(day.map((key) => key[searchData]));
+      if (searchData === "wind_kph" || searchData === "gust_kph") {
+        transformKmhToMs(day, searchData);
+      }
     } else if (
       msBtnToogle &&
       (searchData === "temp_c" ||
@@ -33,10 +36,15 @@ const LineChart = ({ forecastday, searchData, label }) => {
     ) {
       setData(day.map((key) => key[searchData]));
       setMsBtnToogle(false);
-    } else {
-      setData(windDataMs.map((v) => v));
+    } else if (
+      msBtnToogle &&
+      (searchData === "gust_kph" || searchData === "wind_kph")
+    ) {
+      setData(day.map((key) => key[searchData]));
+      setMsBtnToogle(false);
+      transformKmhToMs(day, searchData);
     }
-  }, [day, searchData, msBtnToogle]);
+  }, [day, searchData]);
 
   const handleClick = (e) => {
     if (e.target.value === "today" && !msBtnToogle) {
@@ -55,14 +63,29 @@ const LineChart = ({ forecastday, searchData, label }) => {
   const handleToogle = (e) => {
     if (e.target.value === "gust_kph") {
       setMsBtnToogle(!msBtnToogle);
-      transformKmhToMs(day, searchData);
       setExtraLabel("Porywy wiatru - m/s");
+      if (!msBtnToogle) {
+        transformKmhToMs(day, searchData);
+        setData(windDataMs.map((v) => v));
+      } else {
+        setData(day.map((key) => key[searchData]));
+        setExtraLabel("Porywy wiatru - km/h");
+      }
     } else if (e.target.value === "wind_kph") {
       setMsBtnToogle(!msBtnToogle);
-      transformKmhToMs(day, searchData);
       setExtraLabel("Wiatr - m/s");
+      if (!msBtnToogle) {
+        transformKmhToMs(day, searchData);
+        setData(windDataMs.map((v) => v));
+      } else {
+        setData(day.map((key) => key[searchData]));
+        setExtraLabel("Wiatru - km/h");
+      }
     }
   };
+
+  console.log(data);
+  console.log(windDataMs);
 
   return (
     <>
