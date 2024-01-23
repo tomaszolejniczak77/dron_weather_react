@@ -84,9 +84,6 @@ const LineChart = ({ forecastday, searchData, label }) => {
     }
   };
 
-  console.log(data);
-  console.log(windDataMs);
-
   return (
     <>
       <div className="chartWrapper">
