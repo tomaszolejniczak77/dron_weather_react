@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 
+console.log(import.meta.env);
+console.log(import.meta.env.APP_REACT_APP_API_KEY);
+
 const GetWeather = ({ coords }) => {
   const [weatherData, setWeatherData] = useState();
 
@@ -15,7 +18,7 @@ const GetWeather = ({ coords }) => {
           days: "3",
         },
         headers: {
-          "X-RapidAPI-Key": import.meta.env.VITE_REACT_APP_API_KEY,
+          "X-RapidAPI-Key": import.meta.env.APP_REACT_APP_API_KEY,
           "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
         },
       };
