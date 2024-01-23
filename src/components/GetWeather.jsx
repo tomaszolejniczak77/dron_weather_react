@@ -3,7 +3,6 @@ import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 
 console.log(import.meta.env.VITE_REACT_APP_API_KEY);
-console.log(import.meta.env.PROD.VITE_REACT_APP_API_KEY);
 
 const GetWeather = ({ coords }) => {
   const [weatherData, setWeatherData] = useState();
