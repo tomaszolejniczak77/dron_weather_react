@@ -5,6 +5,8 @@ import WeatherInfo from "./WeatherInfo";
 const GetWeather = ({ coords }) => {
   const [weatherData, setWeatherData] = useState();
 
+  console.log(import.meta.env.REACT_APP_MY_KEY);
+
   useEffect(() => {
     const fetchData = async () => {
       const options = {
