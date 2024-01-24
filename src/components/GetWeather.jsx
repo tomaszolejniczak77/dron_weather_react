@@ -15,7 +15,7 @@ const GetWeather = ({ coords }) => {
           days: "3",
         },
         headers: {
-          "X-RapidAPI-Key": import.meta.env.RAECT_API_KEY,
+          "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
           "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
         },
       };
